@@ -56,16 +56,45 @@ tree = {
     }
 
 }}
-//we need to create a recursive function
-var traverse = function (node) {
-  if (node == null) {
-    return
-  };
-  traverse(node['nodeL']);
-  console.log(node['num']);
-  traverse(node['nodeR']);
-}
+var root = tree['node']
 
-console.log(traverse(tree['node']))
+//O(h) space travesal
+// var traverse = function (node) {
+//   if (node == null) {
+//     return
+//   };
+//   traverse(node['nodeL']);
+//   console.log(node['num']);
+//   traverse(node['nodeR']);
+// }
 
+// console.log(traverse(root))
+
+//O(1) space traversal
+
+//In order to have constant space while traversing the tree we need traverse with our recursion or stacks
+//We can do this using the Morris Travisal
+var cur = root;
+var pre = null;
+
+
+while (cur != null) {  
+     if (cur.nodeL) {  
+       pre = cur.nodeL; 
+       while (pre.nodeR && pre.nodeR != cur) {  
+         pre = pre.nodeR;  
+       }  
+       if (pre.nodeR == null) { // set pre.nodeR to cur and move cur left  
+         pre.nodeR = cur;  
+         cur = cur.nodeL;  
+       } else { // visit and revert the change  
+         pre.nodeR = null;  
+         console.log(cur.num) 
+         cur = cur.nodeR;  
+       }  
+     } else { // visit and move to cur 
+       console.log(cur.num);  
+       cur = cur.nodeR;  
+     }  
+   }   
 
