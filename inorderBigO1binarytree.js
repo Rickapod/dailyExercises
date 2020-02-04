@@ -4,39 +4,51 @@
 
 //sample tree
 tree = {
-  node = {
-    nodeL = {
-      nodeL = {
-        nodeL = null,
-        nodeR = {
-            nodeL = {
-              nodeL = null,
-              nodeR = null
-            },
-            nodeR = {
-              nodeL = null,
-              nodeR = null
-            }
+  'node' : {
+    "num" : 1,
+    "nodeL" : {
+      'num' : 2,
+      "nodeL" : {
+        'num' : 3,
+        "nodeL" : null,
+        "nodeR" : {
+          'num' : 4,
+          "nodeL" : {
+            'num' : 5, 
+            "nodeL" :  null,
+            "nodeR" : null
+          },
+          "nodeR" : {
+            'num' : 6,
+            "nodeL" : null,
+            "nodeR" : null
+          }
         }
       },
-      nodeR = {
-        nodeL = null,
-        nodeR =null,
+      "nodeR" : {
+        'num' : 7,
+        "nodeL" : null,
+        "nodeR" : null,
       }
     },
-    nodeR ={
-      nodeL = {
-        nodeL = null,
-        nodeR =null,
+    "nodeR" : {
+      'num' : 8,
+      "nodeL" : {
+        'num' : 9,
+        "nodeL" : null,
+        "nodeR" :null,
       },
-      nodeR = {
-        nodeL = {
-          nodeL = null,
-          nodeR = null
+      "nodeR" : {
+        'num' : 10,
+        "nodeL" : {
+          'num' : 11,
+          'nodeL' : null,
+          'nodeR' : null
         },
-        nodeR = {
-          nodeL = null,
-          nodeR = null
+        'nodeR' : {
+          'num' : 12,
+          'nodeL' : null,
+          'nodeR' : null
 
         }
       }
@@ -44,8 +56,16 @@ tree = {
     }
 
 }}
-
 //we need to create a recursive function
+var traverse = function (node) {
+  if (node == null) {
+    return
+  };
+  traverse(node['nodeL']);
+  console.log(node['num']);
+  traverse(node['nodeR']);
+}
 
+console.log(traverse(tree['node']))
 
 
