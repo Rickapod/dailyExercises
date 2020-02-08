@@ -1,7 +1,7 @@
 // Boggle is a game played on a 4 x 4 grid of letters. The goal is to find as many words 
 // as possible that can be formed by a sequence of adjacent letters in the grid, using each cell at most once. 
 // Given a game board and a dictionary of valid words, implement a Boggle solver.
-
+var fs = require('fs');
 
 //Need a matrices of letters to create a 4x4 board
 var makeBoard = (size) => {
@@ -20,7 +20,13 @@ var board = makeBoard(4);
 
 
 //Need a dictionary to store valid words
+var wordListPath = require('word-list');
+ 
+var wordArray = fs.readFileSync(wordListPath, 'utf8').split('\n');
 var valid = {}
+for (var i = 0; i < wordArray.length; i ++){
+  valid[wordArray[i]] = wordArray[i]
+}
 
 //need a list of combined words that are valid
 var words = []
