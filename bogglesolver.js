@@ -3,8 +3,21 @@
 // Given a game board and a dictionary of valid words, implement a Boggle solver.
 
 
-//Need a matrices of letters to create a 4x4 grid
-var board = []
+//Need a matrices of letters to create a 4x4 board
+var makeBoard = (size) => {
+  var board = [];
+  var characters = 'abcdefghijklmnopqrstuvwxyz';
+  for (var rows = 0; rows < size; rows++) {
+    var row = [];
+    for (var col = 0; col < size; col++) {
+      row.push(characters.charAt(Math.floor(Math.random() * characters.length)));
+    };
+    board.push(row);
+  };
+  return board;
+} 
+var board = makeBoard(4);
+
 
 //Need a dictionary to store valid words
 var valid = {}
